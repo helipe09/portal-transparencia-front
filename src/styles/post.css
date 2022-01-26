@@ -1,0 +1,6 @@
+.post h1{
+  color: var(--color--isac-blue);
+}
+.post h5{
+  text-align: justify;
+}

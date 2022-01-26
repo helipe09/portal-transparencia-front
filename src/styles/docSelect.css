@@ -1,0 +1,59 @@
+.box-unit-info .card-header .btn {
+  font-size: 1.5rem;
+  color: var(--color--isac-blue);
+  font-weight: bold;
+  width: 100%;
+  text-align: left;
+  text-decoration: none;
+}
+.box-unit-info .card-body h5 {
+  color: var(--color--isac-dark-green);
+}
+
+.box-unit-info .card-body a {
+  color: grey;
+}
+/* .box-unit-info .card-body a {
+  background-color: var(--color--isac-light-green);
+  color: #fff;
+  transition: all 0.6s;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 8px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  text-decoration: none;
+}
+.box-unit-info .card-body a:hover {
+  background-color: var(--color--isac-dark-green);
+} */
+
+.docs.active {
+  overflow: auto;
+  height: auto;
+  max-height: 200px;
+}
+/* .docs .doc-item {
+  padding: 10px 10px;
+  border-bottom: 1px solid rgb(214, 214, 214);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+} */
+
+.docs .doc-item {
+  border-bottom: 1px solid rgb(214, 214, 214);
+}
+
+.docs .doc-item h5 {
+  width: 80%;
+  padding-right: 15px;
+}
+.docs .doc-item a {
+  width: 20%;
+}
+.docs .doc-item:last-child {
+  border-bottom: 0;
+}

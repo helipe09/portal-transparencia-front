@@ -1,0 +1,21 @@
+.blog .date-card {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  position: absolute;
+  top: 198px;
+  right: 34px;
+  background-color: #13387c;
+}
+
+.blog h1 {
+  color: var(--color--isac-blue);
+}
+
+.button-next {
+  display: flex;
+  justify-content: space-between;
+}

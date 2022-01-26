@@ -1,0 +1,21 @@
+.box-unit-info h1,
+.box-unit-info h3 {
+  color: var(--color--isac-blue);
+}
+
+.box-unit-info .cover-unit {
+  border-radius: 20px;
+}
+.unit-social {
+  list-style: none;
+  padding: 0;
+}
+.unit-social li {
+  margin-bottom: 15px;
+  font-size: 28px;
+}
+
+.unit-social li svg {
+  fill: var(--color--isac-dark-green);
+}
+
