@@ -20,6 +20,8 @@ export default function Routes() {
           <Route exact path='/unidades/:id' component={SingleUnit} />
           <Route exact path='/unidades' component={Units} />
           <Route exact path='/unidades-covid-19' component={UnitCovid} />
+          <Route exact path='/unidades/contratos-vingentes' component={Blog}/>
+          <Route exact path='/unidades/contratos-encerrados' component={Blog}/>
         </Switch>
         <Footer />
       </BrowserRouter>
