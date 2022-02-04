@@ -1,9 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  // baseURL: 'https://teste.wedotecnologia.com.br/',
-  //baseURL: 'https://admin-portal.wedotecnologia.com.br/',
-  //baseURL: 'https://transparencia-2.herokuapp.com/',
+  // baseURL: 'http://portal-transp-teste-metrics.us-east-1.elasticbeanstalk.com/',
   baseURL: 'https://admin-portal.isac.org.br/',
   headers: {
     'Content-Type': 'application/json;charset=utf-8',
