@@ -8,6 +8,14 @@ class UnitService {
     return api.get('ap/unidades/todas/covid');
   }
 
+  getValidUnit() {
+    return api.get('ap/unidades/validas')
+  }
+
+  getInvalidUnit() {
+    return api.get('ap/unidades/invalidas')
+  }
+
   get(id) {
     return api.get(`ap/unidade/${id}`);
   }
