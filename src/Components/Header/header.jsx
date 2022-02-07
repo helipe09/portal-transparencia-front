@@ -146,10 +146,10 @@ export default function Header() {
             </LinkContainer>
 
             <NavDropdown title="Unidades Gerenciadas">
-              <LinkContainer to="/sedes/contratos-vingentes">
+              <LinkContainer to="contratos-vingentes">
               <span className="dropdown-item">Contratos vigentes</span>
               </LinkContainer>
-              <LinkContainer to="/sedes/contratos-encerrados">
+              <LinkContainer to="contratos-encerrados">
               <span className="dropdown-item">Contratos encerrados</span>
               </LinkContainer>
             </NavDropdown>
