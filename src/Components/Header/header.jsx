@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import UnitService from "../../services/UnitService";
 import {
@@ -146,17 +147,13 @@ export default function Header() {
             </LinkContainer>
 
             <NavDropdown title="Unidades Gerenciadas">
-              <LinkContainer to="contratos-vingentes">
+              <Link to="/contratos-vingentes">
               <span className="dropdown-item">Contratos vigentes</span>
-              </LinkContainer>
-              <LinkContainer to="contratos-encerrados">
-              <span className="dropdown-item">Contratos encerrados</span>
-              </LinkContainer>
-            </NavDropdown>
-
-            {/* <LinkContainer to='/'>
+              </Link>
+              <Link to='/contratos-encerrados'>
               <span className='nav-link'>Unidades Gerenciadas</span>
-            </LinkContainer> */}
+            </Link>
+            </NavDropdown>
             <LinkContainer to="/unidades-covid-19">
               <span className="nav-link">Unidades Covid-19</span>
             </LinkContainer>

@@ -176,7 +176,7 @@ export default function Home() {
   };
 
   useEffect(() => {
-    UnitService.getAll().then((results) => {
+    UnitService.getValidUnit().then((results) => {
       setUnit(results.data);
     });
   }, []);
