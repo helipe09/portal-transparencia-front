@@ -11,15 +11,19 @@ export default function IsacDocSelect(props) {
   const [activeYears, setActiveYears] = useState(false);
   const [finalData, setFinalData] = useState([]);
   const [bkpData, setBkpData] = useState([]);
+  const [selected, setSelected] = useState('');
 
   useEffect(() => {
     setBkpData(data);
   }, [data]);
 
   function handleOnChange(event) {
+    setSelected('0');
+    console.log("active", active)
+    console.log('selected', selected)
     if (+event.target.value === 0) {
       setActive(false);
-      setActiveYears(false);
+      // setActiveYears(false);
       return;
     }
     if (+event.target.value !== 0) {
@@ -31,6 +35,7 @@ export default function IsacDocSelect(props) {
   }
 
   function handleChangeYear({ target }) {
+    setSelected(target.value)
     let temp = bkpData;
     if (+target.value === 0) {
       setActive(false);
@@ -93,6 +98,7 @@ export default function IsacDocSelect(props) {
                       }`}
                       id="years"
                       onChange={handleChangeYear}
+                      value={selected}
                     >
                       <option value={0}>Ano</option>
                       {[...new Set(data.map((item) => item.anoReferencia))].map(
