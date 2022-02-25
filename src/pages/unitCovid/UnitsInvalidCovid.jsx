@@ -116,10 +116,11 @@ const states = [
   },
 ];
 
-export default function UnitCovid() {
+export default function UnitInvalidCovid() {
   const [covid, setCovid] = useState([]);
   const [ufs, setUfs] = useState([]);
   const [unitsByUf, setUnitsByUf] = useState([]);
+  const [valid, setValid] = useState(false)
 
   useEffect(() => {
     const ufGroup = covid.reduce((object, unit) => {
@@ -130,14 +131,17 @@ export default function UnitCovid() {
     setUnitsByUf(ufGroup);
   }, [covid]);
 
+ 
   useEffect(() => {
-    UnitService.getAllCovid().then((results) => {
+    UnitService.getInvalidUnitsCovid()
+    .then((results) => {
+      setValid(true);
       const ordenar = results.data.sort(function (a, b) {
         return a.nome > b.nome ? 1 : b.nome > a.nome ? -1 : 0;
-      });
+      })
       setCovid(ordenar);
 
-      console.log(results.data);
+      console.log("Unidades", results);
     });
   }, []);
 
@@ -146,9 +150,10 @@ export default function UnitCovid() {
       <Container>
         <Row className="box-units pt-5">
           <Col md={12} className="text-center">
-            <h2>Unidades COVID-19 com contrato vigente</h2>
+            <h2>Unidades COVID-19 com contrato encerrado</h2>
           </Col>
           <Col md={10} className="offset-md-1 py-5">
+            {valid ? 
             <Card className="shadow-lg border-0">
               <Card.Body>
                 <Accordion defaultActiveKey="0">
@@ -189,7 +194,12 @@ export default function UnitCovid() {
                   </Row>
                 </Accordion>
               </Card.Body>
-            </Card>
+            </Card> : <Card className="shadow-lg border-0">
+              <Card.Body>
+                <h3 style={{textAlign: "center"}}>Não foi localizado nenhuma unidade COVID-19 com contrato encerrado</h3>
+              </Card.Body>
+            </Card>}
+            
           </Col>
         </Row>
       </Container>

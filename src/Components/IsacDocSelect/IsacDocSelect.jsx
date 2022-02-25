@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { Card, Col, Form } from 'react-bootstrap';
 
-import { FaDownload } from 'react-icons/fa';
+// import { FaDownload } from 'react-icons/fa';
 
 import '../../styles/docSelect.css';
 
@@ -17,13 +17,14 @@ export default function IsacDocSelect(props) {
     setBkpData(data);
   }, [data]);
 
+
   function handleOnChange(event) {
-    setSelected('0');
-    console.log("active", active)
+    console.log('year', activeYears);
+    console.log('active', active);
     console.log('selected', selected)
+    setSelected('0');
     if (+event.target.value === 0) {
       setActive(false);
-      // setActiveYears(false);
       return;
     }
     if (+event.target.value !== 0) {
@@ -35,6 +36,7 @@ export default function IsacDocSelect(props) {
   }
 
   function handleChangeYear({ target }) {
+    console.log('ano', target.value)
     setSelected(target.value)
     let temp = bkpData;
     if (+target.value === 0) {
@@ -48,6 +50,7 @@ export default function IsacDocSelect(props) {
     setFinalData(temp);
     return target;
   }
+  
   return (
     <>
       {props.group && (

@@ -9,6 +9,7 @@ import Post from './pages/post/post';
 import UnitCovid from './pages/unitCovid/UnitsCovid';
 import ValidUnit from './pages/unit/ValidUnit';
 import InvalidUnit from './pages/unit/InvalidUnit';
+import UnitInvalidCovid from './pages/unitCovid/UnitsInvalidCovid';
 
 export default function Routes() {
   return (
@@ -21,7 +22,8 @@ export default function Routes() {
           <Route exact path='/blog-de-compliance' component={Blog} />
           <Route exact path='/unidades/:id' component={SingleUnit} />
           <Route exact path='/unidades' component={Units} />
-          <Route exact path='/unidades-covid-19' component={UnitCovid} />
+          <Route exact path='/contratos-vingentes-covid' component={UnitCovid} />
+          <Route exact path='/contratos-encerrados-covid' component={UnitInvalidCovid} />
           <Route exact path='/contratos-vingentes' component={ValidUnit}/>
           <Route exact path='/contratos-encerrados' component={InvalidUnit}/>
         </Switch>

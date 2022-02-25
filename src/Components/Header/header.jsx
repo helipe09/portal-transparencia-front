@@ -151,12 +151,17 @@ export default function Header() {
               <span className="dropdown-item">Contratos vigentes</span>
               </Link>
               <Link to='/contratos-encerrados'>
-              <span className='nav-link'>Unidades Gerenciadas</span>
+              <span className='nav-link'>Contratos encerrados</span>
             </Link>
             </NavDropdown>
-            <LinkContainer to="/unidades-covid-19">
-              <span className="nav-link">Unidades Covid-19</span>
-            </LinkContainer>
+            <NavDropdown title="Unidades COVID-19">
+              <Link to="/contratos-vingentes-covid">
+              <span className="dropdown-item">Contratos vigentes</span>
+              </Link>
+              <Link to='/contratos-encerrados-covid'>
+              <span className='nav-link'>Contratos encerrados</span>
+            </Link>
+            </NavDropdown>
             <a
               href="https://isac.org.br/contato/"
               target="_blank"
