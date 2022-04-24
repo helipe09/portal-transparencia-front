@@ -25,7 +25,7 @@ export default function Home() {
   const [units, setUnits] = useState([]);
   const [ufs, setUfs] = useState([]);
   const [unitsByUf, setUnitsByUf] = useState([]);
-  
+
 
   useEffect(() => {
     UnitService.getAll().then((results) => {
@@ -220,7 +220,7 @@ export default function Home() {
         </Row> */}
         <Row className="box-units my-5" id="unidades-gerenciadas">
           <Col md={12} className="text-center">
-            <h2>Onde Estamos</h2>
+            <h2>Nossos Projetos</h2>
           </Col>
           <Col md={10} className="offset-md-1 py-5">
             <Card className="shadow-lg border-0">

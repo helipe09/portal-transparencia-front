@@ -146,7 +146,7 @@ export default function InvalidUnit() {
       <Container>
         <Row className="box-units pt-5">
           <Col md={12} className="text-center">
-            <h2>Unidades com contrato encerrado</h2>
+            <h2>Projetos Concluídos</h2>
           </Col>
           <Col md={10} className="offset-md-1 py-5">
             <Card className="shadow-lg border-0">
@@ -175,7 +175,7 @@ export default function InvalidUnit() {
                                 // eslint-disable-next-line
                                 unitsByUf[uf].map((unit) => (
                                   <li key={unit.id}>
-                                    <Link to={`unidades/${unit.id}`}>
+                                    <Link to={`projetos-concluidos/${unit.id}`}>
                                       {unit.nome}
                                     </Link>
                                   </li>

@@ -1,24 +1,35 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { Card, Col, Form } from 'react-bootstrap';
+import UnitService from '../../services/UnitService';
 
 // import { FaDownload } from 'react-icons/fa';
 
 import '../../styles/docSelect.css';
 
-export default function IsacDocSelect(props) {
+export default function IsacDocSelect2(props) {
   let data = props.data;
   let idUnidade = props.idUnidade;
+  let grupo = props.group;
   const [active, setActive] = useState(false);
   const [activeYears, setActiveYears] = useState(false);
   const [finalData, setFinalData] = useState([]);
   const [bkpData, setBkpData] = useState([]);
   const [selected, setSelected] = useState('');
+  const [teste, setTeste] = useState([])
 
   useEffect(() => {
     setBkpData(data);
-    // console.log('dado do select', data)
-    // console.log('ID da Unidade', idUnidade)
   }, [data]);
+
+  // useEffect(() => {
+  //   grupo?.map((item) => {
+  //     UnitService.getFinishedDocByContract(idUnidade, item.grupo, 249, item.id, 2021 ).then((results) => {
+  //       console.info('resultado do contrato finalizado 2', results.data)
+  //       // setTeste('teste',results.data[0].tiposDocumentos)
+  //     });
+  //   })
+  // },[grupo])
+
 
 
   function handleOnChange(event) {
@@ -36,7 +47,7 @@ export default function IsacDocSelect(props) {
   }
 
   function handleChangeYear({ target }) {
-    // console.log('ano', target.value)
+    console.log('ano', target.value)
     setSelected(target.value)
     let temp = bkpData;
     if (+target.value === 0) {
@@ -58,7 +69,7 @@ export default function IsacDocSelect(props) {
           <Card className="shadow-lg">
             <Card.Body>
               <Form.Group>
-                <Form.Label>{props.title}</Form.Label>
+                <Form.Label>Testando</Form.Label>
                 {props.group && (
                   <>
                     <Form.Control

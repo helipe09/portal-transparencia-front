@@ -23,8 +23,21 @@ class UnitService {
   get(id) {
     return api.get(`ap/unidade/${id}`);
   }
+
+  getDocsByIdAndContract(idUnidade, idContrato) {
+    return api.get(`/ap/arquivos/todosUnidadeAndContratoByGrupo/${idUnidade}/${idContrato}`)
+  }
+
   getDocs(id) {
     return api.get(`ap/arquivos/todosUnidadePorGrupo/${id}`);
+  }
+
+  getDocByContract(id, grupo, tipo, ano) {
+    return api.get(`ap/arquivos/byUnidadeAndContratoVigente/${id}/${grupo}/${tipo}/${ano}`)
+  }
+
+  getFinishedDocByContract(idUnidade, grupo, idContrato, tipoDoc, ano) {
+    return api.get(`/ap/arquivos/byUnidadeAndContratoEncerrado/${idUnidade}/${grupo}/${idContrato}/${tipoDoc}/${ano}`)
   }
 
   getUnitUf(uf) {
@@ -48,6 +61,14 @@ class UnitService {
 
   getUnitsTypes() {
     return api.get('tiposUnidades');
+  }
+
+  getActiveManagementContract(id) {
+    return api.get(`/ap/unidades/contratoVigente/${id}`)
+  }
+
+  getFinishedManagementContract(id) {
+    return api.get(`/ap/unidades/contratosEncerrados/${id}`)
   }
 
   delete(id) {

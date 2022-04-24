@@ -7,9 +7,11 @@ import Units from './pages/unit/Units';
 import SingleUnit from './pages/unit/SingleUnit';
 import Post from './pages/post/post';
 import UnitCovid from './pages/unitCovid/UnitsCovid';
-import ValidUnit from './pages/unit/ValidUnit';
 import InvalidUnit from './pages/unit/InvalidUnit';
 import UnitInvalidCovid from './pages/unitCovid/UnitsInvalidCovid';
+import FinishedProjects from './pages/finishedProjects/FinishedProjects';
+import ValidUnit from './pages/unit/ValidUnit';
+import ValidProjects from './pages/validProjects/ValidProjects';
 
 export default function Routes() {
   return (
@@ -21,11 +23,12 @@ export default function Routes() {
           <Route exact path='/blog-de-compliance/:slug' component={Post} />
           <Route exact path='/blog-de-compliance' component={Blog} />
           <Route exact path='/unidades/:id' component={SingleUnit} />
-          <Route exact path='/unidades' component={Units} />
-          <Route exact path='/contratos-vingentes-covid' component={UnitCovid} />
+          <Route exact path='/unidades-gerenciadas' component={ValidUnit} />
+          <Route exact path='/unidades-gerenciadas/:id' component={ValidProjects} />
+          <Route exact path='/unidades-covid' component={UnitCovid} />
           <Route exact path='/contratos-encerrados-covid' component={UnitInvalidCovid} />
-          <Route exact path='/contratos-vingentes' component={ValidUnit}/>
-          <Route exact path='/contratos-encerrados' component={InvalidUnit}/>
+          <Route exact path='/projetos-concluidos' component={InvalidUnit}/>
+          <Route exact path='/projetos-concluidos/:id' component={FinishedProjects}/>
         </Switch>
         <Footer />
       </BrowserRouter>

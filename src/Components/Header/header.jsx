@@ -112,9 +112,9 @@ export default function Header() {
             <LinkContainer to="/">
               <span className="nav-link">Inicial</span>
             </LinkContainer>
-            
-            
-            
+
+
+
             <NavDropdown title="Compliance">
               {/* <LinkContainer to='/blog-de-compliance'>
                 <NavDropdown.Item>Blog</NavDropdown.Item>
@@ -145,23 +145,12 @@ export default function Header() {
             <LinkContainer to="/unidades/1">
               <span className="nav-link">Sede Administrativa</span>
             </LinkContainer>
-
-            <NavDropdown title="Unidades Gerenciadas">
-              <Link to="/contratos-vingentes">
-              <span className="dropdown-item">Contratos vigentes</span>
-              </Link>
-              <Link to='/contratos-encerrados'>
-              <span className='nav-link'>Contratos encerrados</span>
-            </Link>
-            </NavDropdown>
-            <NavDropdown title="Unidades COVID-19">
-              <Link to="/contratos-vingentes-covid">
-              <span className="dropdown-item">Contratos vigentes</span>
-              </Link>
-              <Link to='/contratos-encerrados-covid'>
-              <span className='nav-link'>Contratos encerrados</span>
-            </Link>
-            </NavDropdown>
+            <LinkContainer to="/unidades-gerenciadas">
+              <span className="nav-link">Nossos Projetos</span>
+            </LinkContainer>
+            <LinkContainer to='/projetos-concluidos'>
+              <span className="nav-link">Projetos Concluídos</span>
+            </LinkContainer>
             <a
               href="https://isac.org.br/contato/"
               target="_blank"
