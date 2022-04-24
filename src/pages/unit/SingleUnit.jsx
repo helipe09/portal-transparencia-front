@@ -46,7 +46,7 @@ export default function SingleUnit(props) {
   const [financialInformation, setFinancialInformation] = useState([]);
   const [financialInformationDocs, setFinancialInformationDocs] = useState([]);
 
-  
+
 
   useEffect(() => {
     const id = props.match.params.id;
@@ -117,6 +117,7 @@ export default function SingleUnit(props) {
     } else {
       let finalData = governance.filter((item) => item.id === value);
       setGovernanceDocs(finalData[0].documentos);
+      console.log('Documentos de Governançaß', governanceDocs)
     }
   }
 
