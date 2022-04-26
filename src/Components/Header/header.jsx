@@ -146,7 +146,7 @@ export default function Header() {
               <span className="nav-link">Sede Administrativa</span>
             </LinkContainer>
             <LinkContainer to="/contratos-vingentes">
-              <span className="nav-link">Nossos Projetos</span>
+              <span className="nav-link">Unidades Gerenciadas</span>
             </LinkContainer>
             <LinkContainer to="/unidades-covid-19">
               <span className="nav-link">Unidades COVID-19</span>
