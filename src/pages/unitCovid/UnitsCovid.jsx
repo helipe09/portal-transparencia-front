@@ -146,7 +146,7 @@ export default function UnitCovid() {
       <Container>
         <Row className="box-units pt-5">
           <Col md={12} className="text-center">
-            <h2>Unidades COVID-19 com contrato vigente</h2>
+            <h2>Unidades COVID-19</h2>
           </Col>
           <Col md={10} className="offset-md-1 py-5">
             <Card className="shadow-lg border-0">

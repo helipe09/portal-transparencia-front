@@ -23,6 +23,7 @@ export default function Routes() {
           <Route exact path='/unidades/:id' component={SingleUnit} />
           <Route exact path='/unidades' component={Units} />
           <Route exact path='/contratos-vingentes-covid' component={UnitCovid} />
+          <Route exact path='/unidades-covid-19' component={UnitCovid} />
           <Route exact path='/contratos-encerrados-covid' component={UnitInvalidCovid} />
           <Route exact path='/contratos-vingentes' component={ValidUnit}/>
           <Route exact path='/contratos-encerrados' component={InvalidUnit}/>
