@@ -12,23 +12,26 @@ export default function IsacContractSelect(props) {
   const [finalData, setFinalData] = useState([]);
   const [bkpData, setBkpData] = useState([]);
   const [selected, setSelected] = useState('');
+  const [contract, setContract] = useState([]);
 
   useEffect(() => {
     setBkpData(data);
   }, [data]);
 
   useEffect(() => {
-    console.log('data intrumentos de',data.length)
+    setContract(data)
   }, [])
 
 
+  console.log('teste',data)
+
   function handleOnChange(event) {
-    console.log(data.titulo)
+    props.onChange(event)
   }
 
   return (
-    <>
-        <Col md={6} className="mb-5">
+    <>{props.valid ?
+      <Col md={6} className="mb-5">
           <Card className="shadow-lg">
             <Card.Body>
               <Form.Group>
@@ -39,20 +42,58 @@ export default function IsacContractSelect(props) {
                       id="docs"
                       onChange={handleOnChange}
                       disabled={data.length !== null ? true : false}
-                    >{data.length === 0
+                    >
+                      <option value="">
+                        {data.titulo} - {data.identificarContrato}
+                      </option>
+                      {/* {data.length === 0
                       ?
                     <option>Não foi localizado nenhum contrato de gestão</option>
                     :
-                    <option value={data.id}>
-                           {`${data.titulo} ${data.identificarContrato}`}
-                         </option>
-                    }
+                    contract.map((item) => (
+                      <React.Fragment key={item.id}>
+
+                          <option value={item.id}>
+                            {item.titulo} - {item.identificarContrato}
+                          </option>
+                      </React.Fragment>
+                    ))
+                    } */}
                     </Form.Control>
                   </>
               </Form.Group>
             </Card.Body>
           </Card>
         </Col>
+    :
+    <Col md={6} className="mb-5">
+    <Card className="shadow-lg">
+      <Card.Body>
+        <Form.Group>
+          <Form.Label>Valid</Form.Label>
+            <>
+              <Form.Control
+                as="select"
+                id="docs"
+                onChange={handleOnChange}
+                // disabled={data.length !== null ? true : false}
+              >{data.length === 0
+                ?
+              <option>Não foi localizado nenhum contrato de gestão</option>
+              :
+              <option value={data.id}>
+              {`${data.titulo} ${data.identificarContrato}`}
+            </option>
+
+              }
+              </Form.Control>
+            </>
+        </Form.Group>
+      </Card.Body>
+    </Card>
+  </Col>
+    }
+
     </>
   );
 }

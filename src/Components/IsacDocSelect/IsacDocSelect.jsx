@@ -7,7 +7,6 @@ import '../../styles/docSelect.css';
 
 export default function IsacDocSelect(props) {
   let data = props.data;
-  let idUnidade = props.idUnidade;
   const [active, setActive] = useState(false);
   const [activeYears, setActiveYears] = useState(false);
   const [finalData, setFinalData] = useState([]);
@@ -16,8 +15,6 @@ export default function IsacDocSelect(props) {
 
   useEffect(() => {
     setBkpData(data);
-    // console.log('dado do select', data)
-    // console.log('ID da Unidade', idUnidade)
   }, [data]);
 
 

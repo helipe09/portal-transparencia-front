@@ -49,6 +49,8 @@ export default function FinishedProjects(props) {
   const [financialInformation, setFinancialInformation] = useState([]);
   const [financialInformationDocs, setFinancialInformationDocs] = useState([]);
 
+  const [idContrato, setIdContrato] = useState('0')
+
 
 
   useEffect(() => {
@@ -56,29 +58,39 @@ export default function FinishedProjects(props) {
     UnitService.get(id).then((results) => {
       setUnit(results.data);
     });
-    // UnitService.getDocs(id).then((results) => {
-    //   setContratante(results.data.contratante);
-    //   setGroups(results.data.grupos);
-    //   console.log('grupos', results.data.grupos)
-    // });
+  }, [props]);
+
+  // console.log('contradots', managementContract?.id)
+
+  useEffect(() => {
+    const id = props.match.params.id;
     UnitService.getFinishedManagementContract(id).then((results)=>{
       console.log('contrato de gestão', results.data)
       setManagementContract(results?.data);
     });
-  }, [props]);
+  },[unit])
 
   useEffect(() => {
     const id = props.match.params.id;
-    UnitService.getDocsByIdAndContract(id, managementContract.id).then((response) => {
-      console.log('testenaod select valid', response)
+    UnitService.getDocsByIdAndContract(id, managementContract[0]?.id).then((response) => {
       setContratante(response.data.contratante);
       setGroups(response.data.grupos)
     })
-  },[managementContract])
+  },[unit])
 
+  useEffect(() => {
+    const id = props.match.params.id;
+    console.log('id Contrato')
+    UnitService.getDocsByIdAndContract(id, idContrato).then((response) => {
+      console.log('teste response',response.data)
+      setContratante(response.data.contratante);
+      setGroups(response.data.grupos)
+    })
+  },[idContrato])
 
 
   useEffect(() => {
+    console.log('grupo')
     setHiringInformation(groups[0]?.tiposDocumentos);
     setContractExecution(groups[1]?.tiposDocumentos);
     setAccountability(groups[2]?.tiposDocumentos);
@@ -88,9 +100,15 @@ export default function FinishedProjects(props) {
     setFinancialInformation(groups[6]?.tiposDocumentos);
   }, [groups]);
 
+  function handleInstruments(event) {
+    setIdContrato(event.target.value)
+    console.log(event.target.value)
+  }
+
 
   function handleChangeHiringInformationDocs(event) {
     const value = +event.target.value;
+    console.log('handleHiring', value)
     if (value === 0) {
       setHiringInformationDocs('');
     } else {
@@ -160,9 +178,7 @@ export default function FinishedProjects(props) {
     }
   }
 
-  function handleInstruments(event) {
-    console.log('evento de gestão', event)
-  }
+
 
   return (
     <>
@@ -243,6 +259,7 @@ export default function FinishedProjects(props) {
               onChange={handleInstruments}
               group={hiringInformation}
               data={managementContract}
+              valid={true}
             />
           </Row>
           <Row className="form-search my-5">

@@ -120,6 +120,7 @@ export default function ValidUnit() {
   const [validUnit, setvalidUnit] = useState([]);
   const [ufs, setUfs] = useState([]);
   const [unitsByUf, setUnitsByUf] = useState([]);
+  const [contratosValidos, setContratosValidos] = useState([]);
 
   useEffect(() => {
     const ufGroup = validUnit.reduce((object, unit) => {
@@ -131,7 +132,15 @@ export default function ValidUnit() {
   }, [validUnit]);
 
   useEffect(() => {
-    UnitService.getValidUnit().then((results) => {
+    UnitService.getContratosVigentes().then((response) => {
+      setContratosValidos(response.data)
+    })
+  },[])
+
+  console.log('contratos Validos', contratosValidos)
+
+  useEffect(() => {
+    UnitService.getContratosVigentes().then((results) => {
       const ordenar = results.data.sort(function (a, b) {
         return a.nome > b.nome ? 1 : b.nome > a.nome ? -1 : 0;
       });

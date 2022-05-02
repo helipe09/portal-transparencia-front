@@ -12,6 +12,14 @@ class UnitService {
     return api.get('ap/unidades/todas/covid/encerradas');
   }
 
+  getContratosVigentes() {
+    return api.get('/ap/unidadesContratoVigente')
+  }
+
+  getContratosEncerrados() {
+    return api.get('/ap/unidadesContratoEncerrado')
+  }
+
   getValidUnit() {
     return api.get('ap/unidades/validas')
   }

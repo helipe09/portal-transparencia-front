@@ -120,6 +120,7 @@ export default function InvalidUnit() {
   const [invalidUnit, setinvalidUnit] = useState([]);
   const [ufs, setUfs] = useState([]);
   const [unitsByUf, setUnitsByUf] = useState([]);
+  const setUnits = new Set();
 
   useEffect(() => {
     const ufGroup = invalidUnit.reduce((object, unit) => {
@@ -131,13 +132,18 @@ export default function InvalidUnit() {
   }, [invalidUnit]);
 
   useEffect(() => {
-    UnitService.getInvalidUnit().then((results) => {
-      const ordenar = results.data.sort(function (a, b) {
+    UnitService.getContratosEncerrados().then((results) => {
+      const dataUnit = results.data;
+      const noRepeat = dataUnit.filter((units) => {
+        const duplicatedUnit = setUnits.has(units.id);
+        setUnits.add(units.id)
+        return !duplicatedUnit;
+      });
+      const ordenar = noRepeat.sort(function (a, b) {
         return a.nome > b.nome ? 1 : b.nome > a.nome ? -1 : 0;
       });
       setinvalidUnit(ordenar);
 
-      console.log(results.data);
     });
   }, []);
 
