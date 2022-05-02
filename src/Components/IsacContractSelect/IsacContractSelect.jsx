@@ -41,12 +41,12 @@ export default function IsacContractSelect(props) {
                       as="select"
                       id="docs"
                       onChange={handleOnChange}
-                      disabled={data.length !== null ? true : false}
+                      // disabled={data.length !== null ? true : false}
                     >
-                      <option value="">
+                      {/* <option value="">
                         {data.titulo} - {data.identificarContrato}
-                      </option>
-                      {/* {data.length === 0
+                      </option> */}
+                      {data.length === 0
                       ?
                     <option>Não foi localizado nenhum contrato de gestão</option>
                     :
@@ -58,7 +58,7 @@ export default function IsacContractSelect(props) {
                           </option>
                       </React.Fragment>
                     ))
-                    } */}
+                    }
                     </Form.Control>
                   </>
               </Form.Group>
@@ -70,13 +70,13 @@ export default function IsacContractSelect(props) {
     <Card className="shadow-lg">
       <Card.Body>
         <Form.Group>
-          <Form.Label>Valid</Form.Label>
+          <Form.Label>{props.title}</Form.Label>
             <>
               <Form.Control
                 as="select"
                 id="docs"
                 onChange={handleOnChange}
-                // disabled={data.length !== null ? true : false}
+                disabled={data.length !== null ? true : false}
               >{data.length === 0
                 ?
               <option>Não foi localizado nenhum contrato de gestão</option>

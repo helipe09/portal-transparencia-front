@@ -256,7 +256,7 @@ export default function ValidProjects(props) {
               onChange={handleInstruments}
               group={hiringInformation}
               data={managementContract}
-              valid={true}
+              valid={false}
             />
           </Row>
           <Row className="form-search my-5">
