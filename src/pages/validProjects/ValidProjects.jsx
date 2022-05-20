@@ -251,13 +251,13 @@ export default function ValidProjects(props) {
             </Col>
           </Row>
           <Row className="form-search my-5">
-          <IsacContractSelect
+          {/* <IsacContractSelect
               title={'Instrumentos de Gestão'}
               onChange={handleInstruments}
               group={hiringInformation}
               data={managementContract}
               valid={false}
-            />
+            /> */}
           </Row>
           <Row className="form-search my-5">
             <IsacDocSelect
@@ -266,6 +266,7 @@ export default function ValidProjects(props) {
               group={hiringInformation}
               data={hiringInformationDocs}
               idUnidade={idUnidade}
+              year={true}
             />
 
             <IsacDocSelect
@@ -274,13 +275,16 @@ export default function ValidProjects(props) {
               group={contractExecution}
               data={contractExecutionDocs}
               idUnidade={idUnidade}
+              year={false}
             />
             <IsacDocSelect
               title={groups[2]?.nome}
               onChange={handleChangeAccountabilityDocs}
               group={accountability}
               data={accountabilityDocs}
-              idUnidade={idUnidade}/>
+              idUnidade={idUnidade}
+              year={false}
+              />
 
               <IsacDocSelect
               title={groups[3]?.nome}
@@ -288,6 +292,7 @@ export default function ValidProjects(props) {
               group={accountingStatements}
               data={accountingStatementsDocs}
               idUnidade={idUnidade}
+              year={false}
             />
             <IsacDocSelect
               title={groups[4]?.nome}
@@ -295,6 +300,7 @@ export default function ValidProjects(props) {
               group={governance}
               data={governanceDocs}
               idUnidade={idUnidade}
+              year={false}
             />
 
             <IsacDocSelect
@@ -303,6 +309,7 @@ export default function ValidProjects(props) {
               group={reporting}
               data={reportingDocs}
               idUnidade={idUnidade}
+              year={false}
             />
             <IsacDocSelect
               title={groups[6]?.nome}
@@ -310,6 +317,7 @@ export default function ValidProjects(props) {
               group={financialInformation}
               data={financialInformationDocs}
               idUnidade={idUnidade}
+              year={false}
             />
             {contratante.idArquivoImagem && (
               <Contractor

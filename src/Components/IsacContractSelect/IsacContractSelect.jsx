@@ -52,7 +52,7 @@ export default function IsacContractSelect(props) {
                     :
                     contract.map((item) => (
                       <React.Fragment key={item.id}>
-
+                          <option selected>Selecione o contrato de gestão</option>
                           <option value={item.id}>
                             {item.titulo} - {item.identificarContrato}
                           </option>
@@ -81,9 +81,12 @@ export default function IsacContractSelect(props) {
                 ?
               <option>Não foi localizado nenhum contrato de gestão</option>
               :
-              <option value={data.id}>
-              {`${data.titulo} ${data.identificarContrato}`}
-            </option>
+              <>
+              <option value={0} selected>Selecione o contrato de gestão</option>
+              {/* <option value={data.id}>
+                      {`${data.titulo} ${data.identificarContrato}`}
+                    </option> */}
+                    </>
 
               }
               </Form.Control>

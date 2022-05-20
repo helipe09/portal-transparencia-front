@@ -98,7 +98,7 @@ export default function FinishedProjects(props) {
     setGovernance(groups[4]?.tiposDocumentos);
     setReporting(groups[5]?.tiposDocumentos);
     setFinancialInformation(groups[6]?.tiposDocumentos);
-  }, [groups]);
+  }, [idContrato]);
 
   function handleInstruments(event) {
     setIdContrato(event.target.value)
@@ -262,6 +262,8 @@ export default function FinishedProjects(props) {
               valid={true}
             />
           </Row>
+          <div className="line">
+          </div>
           <Row className="form-search my-5">
             <IsacDocSelect
               title={groups[0]?.nome}
@@ -300,12 +302,14 @@ export default function FinishedProjects(props) {
               onChange={handleChangeReportingDocs}
               group={reporting}
               data={reportingDocs}
+              year={true}
             />
             <IsacDocSelect
               title={groups[6]?.nome}
               onChange={handleChangeFinancialInformationDocs}
               group={financialInformation}
               data={financialInformationDocs}
+              year={true}
             />
             {contratante.idArquivoImagem && (
               <Contractor

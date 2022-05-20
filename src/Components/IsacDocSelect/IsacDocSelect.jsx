@@ -7,6 +7,7 @@ import '../../styles/docSelect.css';
 
 export default function IsacDocSelect(props) {
   let data = props.data;
+  let year = props.year;
   const [active, setActive] = useState(false);
   const [activeYears, setActiveYears] = useState(false);
   const [finalData, setFinalData] = useState([]);
@@ -20,6 +21,7 @@ export default function IsacDocSelect(props) {
 
   function handleOnChange(event) {
     setSelected('0');
+    console.log('evento do handle',event.target.value)
     if (+event.target.value === 0) {
       setActive(false);
       return;
@@ -33,7 +35,6 @@ export default function IsacDocSelect(props) {
   }
 
   function handleChangeYear({ target }) {
-    // console.log('ano', target.value)
     setSelected(target.value)
     let temp = bkpData;
     if (+target.value === 0) {
@@ -89,27 +90,32 @@ export default function IsacDocSelect(props) {
 
               {finalData && (
                 <>
-                  <Form.Group>
-                    <Form.Control
-                      as="select"
-                      defaultValue="Selecione o ano"
-                      className={`w-25 years ${
-                        activeYears ? 'd-block' : 'd-none'
-                      }`}
-                      id="years"
-                      onChange={handleChangeYear}
-                      value={selected}
-                    >
-                      <option value={0}>Ano</option>
-                      {[...new Set(data.map((item) => item.anoReferencia))].map(
-                        (option) => (
-                          <option key={option} value={option}>
-                            {option}
-                          </option>
-                        )
-                      )}
-                    </Form.Control>
-                  </Form.Group>
+                {year ?
+                 null
+                :
+                <Form.Group>
+                <Form.Control
+                  as="select"
+                  defaultValue="Selecione o ano"
+                  className={`w-25 years ${
+                    activeYears ? 'd-block' : 'd-none'
+                  }`}
+                  id="years"
+                  onChange={handleChangeYear}
+                  value={selected}
+                >
+                  <option value={0}>Ano</option>
+                  {[...new Set(data.map((item) => item.anoReferencia))].map(
+                    (option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    )
+                  )}
+                </Form.Control>
+              </Form.Group>
+                }
+
                   <div
                     className={`docs ${active ? 'd-block active' : 'd-none'}`}
                   >

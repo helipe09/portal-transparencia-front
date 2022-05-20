@@ -14,7 +14,7 @@ nav span {
 .navbar-brand {
   width: 250px;
 }
-/* 
+/*
 .blog-post h4 {
   color: red !important;
 } */
@@ -193,4 +193,11 @@ nav span {
 .loading {
   padding: 50px;
   text-align: center;
+}
+
+.line {
+  background-color: var(--color--isac-blue);
+  height: 2px;
+  width: 70%;
+  margin-top: -5%;
 }
