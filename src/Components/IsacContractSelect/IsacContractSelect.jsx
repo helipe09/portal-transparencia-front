@@ -23,8 +23,6 @@ export default function IsacContractSelect(props) {
   }, [])
 
 
-  console.log('teste',data)
-
   function handleOnChange(event) {
     props.onChange(event)
   }
@@ -41,11 +39,7 @@ export default function IsacContractSelect(props) {
                       as="select"
                       id="docs"
                       onChange={handleOnChange}
-                      // disabled={data.length !== null ? true : false}
                     >
-                      {/* <option value="">
-                        {data.titulo} - {data.identificarContrato}
-                      </option> */}
                       {data.length === 0
                       ?
                     <option>Não foi localizado nenhum contrato de gestão</option>
