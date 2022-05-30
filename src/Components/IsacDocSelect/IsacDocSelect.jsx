@@ -88,12 +88,12 @@ export default function IsacDocSelect(props) {
                 )}
               </Form.Group>
 
-              {finalData && (
+              {data && (
                 <>
                   <div
                     className={`docs ${active ? 'd-block active' : 'd-none'}`}
                   >
-                    {finalData.map((item) => (
+                    {data.map((item) => (
                       <Fragment key={item.id}>
                         {item.urlAwsS3 ? (
                           <a
