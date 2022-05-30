@@ -18,10 +18,10 @@ export default function IsacDocSelect(props) {
     setBkpData(data);
   }, [data]);
 
-
   function handleOnChange(event) {
     setSelected('0');
-    console.log('evento do handle',event.target.value)
+    console.log(bkpData);
+    console.log('evento do handle', event.target.value);
     if (+event.target.value === 0) {
       setActive(false);
       return;
@@ -35,7 +35,7 @@ export default function IsacDocSelect(props) {
   }
 
   function handleChangeYear({ target }) {
-    setSelected(target.value)
+    setSelected(target.value);
     let temp = bkpData;
     if (+target.value === 0) {
       setActive(false);
@@ -49,19 +49,19 @@ export default function IsacDocSelect(props) {
     return target;
   }
 
-  return (
+  return year ? (
     <>
       {props.group && (
-        <Col md={6} className="mb-5">
-          <Card className="shadow-lg">
+        <Col md={6} className='mb-5'>
+          <Card className='shadow-lg'>
             <Card.Body>
               <Form.Group>
                 <Form.Label>{props.title}</Form.Label>
                 {props.group && (
                   <>
                     <Form.Control
-                      as="select"
-                      id="docs"
+                      as='select'
+                      id='docs'
                       onChange={handleOnChange}
                       disabled={props.group.length <= 0 ? true : false}
                     >
@@ -90,31 +90,103 @@ export default function IsacDocSelect(props) {
 
               {finalData && (
                 <>
-                {year ?
-                 null
-                :
-                <Form.Group>
-                <Form.Control
-                  as="select"
-                  defaultValue="Selecione o ano"
-                  className={`w-25 years ${
-                    activeYears ? 'd-block' : 'd-none'
-                  }`}
-                  id="years"
-                  onChange={handleChangeYear}
-                  value={selected}
-                >
-                  <option value={0}>Ano</option>
-                  {[...new Set(data.map((item) => item.anoReferencia))].map(
-                    (option) => (
-                      <option key={option} value={option}>
-                        {option}
-                      </option>
-                    )
-                  )}
-                </Form.Control>
+                  <div
+                    className={`docs ${active ? 'd-block active' : 'd-none'}`}
+                  >
+                    {finalData.map((item) => (
+                      <Fragment key={item.id}>
+                        {item.urlAwsS3 ? (
+                          <a
+                            href={item.urlAwsS3}
+                            target='_blank'
+                            without
+                            rel='noreferrer'
+                          >
+                            <h6 className='pt-2'>{item.nomeExibicao}</h6>
+                          </a>
+                        ) : (
+                          <a
+                            href={`https://admin-portal.isac.org.br/ap/arquivo/download/${item.id}`}
+                            target='_blank'
+                            without
+                            rel='noreferrer'
+                          >
+                            <h6 className='pt-2'>{item.nomeExibicao}</h6>
+                          </a>
+                        )}
+                        <div className='doc-item'></div>
+                      </Fragment>
+                    ))}
+                  </div>
+                </>
+              )}
+            </Card.Body>
+          </Card>
+        </Col>
+      )}
+    </>
+  ) : (
+    <>
+      {props.group && (
+        <Col md={6} className='mb-5'>
+          <Card className='shadow-lg'>
+            <Card.Body>
+              <Form.Group>
+                <Form.Label>{props.title}</Form.Label>
+                {props.group && (
+                  <>
+                    <Form.Control
+                      as='select'
+                      id='docs'
+                      onChange={handleOnChange}
+                      disabled={props.group.length <= 0 ? true : false}
+                    >
+                      {props.group && (
+                        <>
+                          <option value={0}>
+                            {props.group.length <= 0
+                              ? 'Nenhum documento registrado'
+                              : 'Selecione uma opção'}
+                          </option>
+                          {props?.group.map((item) => (
+                            <React.Fragment key={item.id}>
+                              {item?.documentos.length === 0 ? null : (
+                                <option value={item.id}>
+                                  {item.nome} - ({item?.documentos.length})
+                                </option>
+                              )}
+                            </React.Fragment>
+                          ))}
+                        </>
+                      )}
+                    </Form.Control>
+                  </>
+                )}
               </Form.Group>
-                }
+
+              {finalData && (
+                <>
+                  <Form.Group>
+                    <Form.Control
+                      as='select'
+                      defaultValue='Selecione o ano'
+                      className={`w-25 years ${
+                        activeYears ? 'd-block' : 'd-none'
+                      }`}
+                      id='years'
+                      onChange={handleChangeYear}
+                      value={selected}
+                    >
+                      <option value={0}>Ano</option>
+                      {[...new Set(data.map((item) => item.anoReferencia))].map(
+                        (option) => (
+                          <option key={option} value={option}>
+                            {option}
+                          </option>
+                        )
+                      )}
+                    </Form.Control>
+                  </Form.Group>
 
                   <div
                     className={`docs ${active ? 'd-block active' : 'd-none'}`}
@@ -124,23 +196,23 @@ export default function IsacDocSelect(props) {
                         {item.urlAwsS3 ? (
                           <a
                             href={item.urlAwsS3}
-                            target="_blank"
+                            target='_blank'
                             without
-                            rel="noreferrer"
+                            rel='noreferrer'
                           >
-                            <h6 className="pt-2">{item.nomeExibicao}</h6>
+                            <h6 className='pt-2'>{item.nomeExibicao}</h6>
                           </a>
                         ) : (
                           <a
                             href={`https://admin-portal.isac.org.br/ap/arquivo/download/${item.id}`}
-                            target="_blank"
+                            target='_blank'
                             without
-                            rel="noreferrer"
+                            rel='noreferrer'
                           >
-                            <h6 className="pt-2">{item.nomeExibicao}</h6>
+                            <h6 className='pt-2'>{item.nomeExibicao}</h6>
                           </a>
                         )}
-                        <div className="doc-item"></div>
+                        <div className='doc-item'></div>
                       </Fragment>
                     ))}
                   </div>

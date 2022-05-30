@@ -307,6 +307,7 @@ export default function FinishedProjects(props) {
                 onChange={handleChangeGovernanceDocs}
                 group={governance}
                 data={governanceDocs}
+                year={true}
               />
 
               <IsacDocSelect
