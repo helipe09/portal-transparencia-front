@@ -46,8 +46,6 @@ export default function SingleUnit(props) {
   const [financialInformation, setFinancialInformation] = useState([]);
   const [financialInformationDocs, setFinancialInformationDocs] = useState([]);
 
-
-
   useEffect(() => {
     const id = props.match.params.id;
     UnitService.get(id).then((results) => {
@@ -68,7 +66,6 @@ export default function SingleUnit(props) {
     setReporting(groups[5]?.tiposDocumentos);
     setFinancialInformation(groups[6]?.tiposDocumentos);
   }, [groups]);
-
 
   function handleChangeHiringInformationDocs(event) {
     const value = +event.target.value;
@@ -117,7 +114,7 @@ export default function SingleUnit(props) {
     } else {
       let finalData = governance.filter((item) => item.id === value);
       setGovernanceDocs(finalData[0].documentos);
-      console.log('Documentos de Governançaß', governanceDocs)
+      console.log('Documentos de Governançaß', governanceDocs);
     }
   }
 
@@ -144,24 +141,24 @@ export default function SingleUnit(props) {
   return (
     <>
       {groups.length === 0 ? (
-        <div className="loading">
-          <Spinner animation="border" role="status" variant="primary">
-            <span className="sr-only">Loading...</span>
+        <div className='loading'>
+          <Spinner animation='border' role='status' variant='primary'>
+            <span className='sr-only'>Loading...</span>
           </Spinner>
         </div>
       ) : (
-        <Container className="box-unit-info py-5">
-          <Row className="py-5">
+        <Container className='box-unit-info py-5'>
+          <Row className='py-5'>
             <Col md={6}>
               <h1>{unit.nome}</h1>
               <p>{unit.resumo}</p>
-              <h3 className="d-none">Gestores</h3>
+              <h3 className='d-none'>Gestores</h3>
             </Col>
             <Col md={6}>
               {unit.idArquivoImagem ? (
                 <Image
-                  width="50%"
-                  className="mb-4"
+                  width='50%'
+                  className='mb-4'
                   src={unit.urlS3Imagem}
                   fluid
                 />
@@ -169,52 +166,52 @@ export default function SingleUnit(props) {
                 ''
               )}
               <h3>Contato da Unidade</h3>
-              <ul className="unit-social">
+              <ul className='unit-social'>
                 <li>
                   <h5>
-                    <FaPhoneAlt className="mr-3" size={20} />
+                    <FaPhoneAlt className='mr-3' size={20} />
                     {unit.telefone}
                   </h5>
                 </li>
                 <li>
                   <h5>
-                    <FaEnvelope className="mr-3" size={20} />
+                    <FaEnvelope className='mr-3' size={20} />
                     {unit.email}
                   </h5>
                 </li>
                 <li>
                   <h5>
-                    <FaMapMarkerAlt className="mr-3" size={20} />
+                    <FaMapMarkerAlt className='mr-3' size={20} />
                     {unit.endereco}
                   </h5>
                 </li>
               </ul>
-              <div className="unit-social">
+              <div className='unit-social'>
                 <li>
                   {unit.urlFacebook ? (
-                    <a href={unit.urlFacebook} target="_blank" rel="noreferrer">
-                      <FaFacebookF className="mr-3" size={28} />
+                    <a href={unit.urlFacebook} target='_blank' rel='noreferrer'>
+                      <FaFacebookF className='mr-3' size={28} />
                     </a>
                   ) : null}
                   {unit.urlFacebook ? (
                     <a
                       href={unit.urlInstagram}
-                      target="_blank"
-                      rel="noreferrer"
+                      target='_blank'
+                      rel='noreferrer'
                     >
-                      <FaInstagram className="mr-3" size={28} />
+                      <FaInstagram className='mr-3' size={28} />
                     </a>
                   ) : null}
                   {unit.urlSite ? (
-                    <a href={unit.urlSite} target="_blank" rel="noreferrer">
-                      <FaGlobe className="mr-3" size={28} />
+                    <a href={unit.urlSite} target='_blank' rel='noreferrer'>
+                      <FaGlobe className='mr-3' size={28} />
                     </a>
                   ) : null}
                 </li>
               </div>
             </Col>
           </Row>
-          <Row className="form-search my-5">
+          <Row className='form-search my-5'>
             <IsacDocSelect
               title={groups[0]?.nome}
               onChange={handleChangeHiringInformationDocs}
@@ -245,6 +242,7 @@ export default function SingleUnit(props) {
               onChange={handleChangeGovernanceDocs}
               group={governance}
               data={governanceDocs}
+              year={true}
             />
 
             <IsacDocSelect
@@ -252,6 +250,7 @@ export default function SingleUnit(props) {
               onChange={handleChangeReportingDocs}
               group={reporting}
               data={reportingDocs}
+              year={true}
             />
             <IsacDocSelect
               title={groups[6]?.nome}
@@ -260,9 +259,7 @@ export default function SingleUnit(props) {
               data={financialInformationDocs}
             />
             {contratante.idArquivoImagem && (
-              <Contractor
-                logo={unit.contratante.urlS3}
-              />
+              <Contractor logo={unit.contratante.urlS3} />
             )}
           </Row>
         </Container>

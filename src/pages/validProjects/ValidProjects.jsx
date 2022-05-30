@@ -50,11 +50,9 @@ export default function ValidProjects(props) {
   const [financialInformation, setFinancialInformation] = useState([]);
   const [financialInformationDocs, setFinancialInformationDocs] = useState([]);
 
-  const [teste, setTeste] = useState([])
+  const [teste, setTeste] = useState([]);
 
   const idUnidade = props.match.params.id;
-
-
 
   useEffect(() => {
     const id = props.match.params.id;
@@ -66,19 +64,21 @@ export default function ValidProjects(props) {
     //   setContratante(results.data.contratante);
     //   setGroups(results.data.grupos);
     // });
-    UnitService.getActiveManagementContract(id).then((results)=>{
+    UnitService.getActiveManagementContract(id).then((results) => {
       setManagementContract(results.data);
-    })
+    });
   }, [props]);
 
   useEffect(() => {
     const id = props.match.params.id;
-    UnitService.getDocsByIdAndContract(id, managementContract.id).then((response) => {
-      console.log('testenaod select valid', response)
-      setContratante(response.data.contratante);
-      setGroups(response.data.grupos)
-    })
-  },[unit])
+    UnitService.getDocsByIdAndContract(id, managementContract.id).then(
+      (response) => {
+        console.log('testenaod select valid', response);
+        setContratante(response.data.contratante);
+        setGroups(response.data.grupos);
+      }
+    );
+  }, [unit]);
 
   useEffect(() => {
     setHiringInformation(groups[0]?.tiposDocumentos);
@@ -100,8 +100,6 @@ export default function ValidProjects(props) {
   //   })
   // }, [groups])
 
-
-
   function handleChangeHiringInformationDocs(event) {
     const value = +event.target.value;
     if (value === 0) {
@@ -109,7 +107,7 @@ export default function ValidProjects(props) {
     } else {
       let finalData = hiringInformation.filter((item) => item.id === value);
       setHiringInformationDocs(finalData[0].documentos);
-      console.log('final data',finalData)
+      console.log('final data', finalData);
     }
   }
 
@@ -174,30 +172,30 @@ export default function ValidProjects(props) {
   }
 
   function handleInstruments(event) {
-    console.log('evento de gestão', event)
+    console.log('evento de gestão', event);
   }
 
   return (
     <>
       {groups.length === 0 ? (
-        <div className="loading">
-          <Spinner animation="border" role="status" variant="primary">
-            <span className="sr-only">Loading...</span>
+        <div className='loading'>
+          <Spinner animation='border' role='status' variant='primary'>
+            <span className='sr-only'>Loading...</span>
           </Spinner>
         </div>
       ) : (
-        <Container className="box-unit-info py-5">
-          <Row className="py-5">
+        <Container className='box-unit-info py-5'>
+          <Row className='py-5'>
             <Col md={6}>
               <h1>{unit.nome}</h1>
               <p>{unit.resumo}</p>
-              <h3 className="d-none">Gestores</h3>
+              <h3 className='d-none'>Gestores</h3>
             </Col>
             <Col md={6}>
               {unit.idArquivoImagem ? (
                 <Image
-                  width="50%"
-                  className="mb-4"
+                  width='50%'
+                  className='mb-4'
                   src={unit.urlS3Imagem}
                   fluid
                 />
@@ -205,53 +203,53 @@ export default function ValidProjects(props) {
                 ''
               )}
               <h3>Contato da Unidade</h3>
-              <ul className="unit-social">
+              <ul className='unit-social'>
                 <li>
                   <h5>
-                    <FaPhoneAlt className="mr-3" size={20} />
+                    <FaPhoneAlt className='mr-3' size={20} />
                     {unit.telefone}
                   </h5>
                 </li>
                 <li>
                   <h5>
-                    <FaEnvelope className="mr-3" size={20} />
+                    <FaEnvelope className='mr-3' size={20} />
                     {unit.email}
                   </h5>
                 </li>
                 <li>
                   <h5>
-                    <FaMapMarkerAlt className="mr-3" size={20} />
+                    <FaMapMarkerAlt className='mr-3' size={20} />
                     {unit.endereco}
                   </h5>
                 </li>
               </ul>
-              <div className="unit-social">
+              <div className='unit-social'>
                 <li>
                   {unit.urlFacebook ? (
-                    <a href={unit.urlFacebook} target="_blank" rel="noreferrer">
-                      <FaFacebookF className="mr-3" size={28} />
+                    <a href={unit.urlFacebook} target='_blank' rel='noreferrer'>
+                      <FaFacebookF className='mr-3' size={28} />
                     </a>
                   ) : null}
                   {unit.urlFacebook ? (
                     <a
                       href={unit.urlInstagram}
-                      target="_blank"
-                      rel="noreferrer"
+                      target='_blank'
+                      rel='noreferrer'
                     >
-                      <FaInstagram className="mr-3" size={28} />
+                      <FaInstagram className='mr-3' size={28} />
                     </a>
                   ) : null}
                   {unit.urlSite ? (
-                    <a href={unit.urlSite} target="_blank" rel="noreferrer">
-                      <FaGlobe className="mr-3" size={28} />
+                    <a href={unit.urlSite} target='_blank' rel='noreferrer'>
+                      <FaGlobe className='mr-3' size={28} />
                     </a>
                   ) : null}
                 </li>
               </div>
             </Col>
           </Row>
-          <Row className="form-search my-5">
-          {/* <IsacContractSelect
+          <Row className='form-search my-5'>
+            {/* <IsacContractSelect
               title={'Instrumentos de Gestão'}
               onChange={handleInstruments}
               group={hiringInformation}
@@ -259,7 +257,7 @@ export default function ValidProjects(props) {
               valid={false}
             /> */}
           </Row>
-          <Row className="form-search my-5">
+          <Row className='form-search my-5'>
             <IsacDocSelect
               title={groups[0]?.nome}
               onChange={handleChangeHiringInformationDocs}
@@ -284,9 +282,9 @@ export default function ValidProjects(props) {
               data={accountabilityDocs}
               idUnidade={idUnidade}
               year={false}
-              />
+            />
 
-              <IsacDocSelect
+            <IsacDocSelect
               title={groups[3]?.nome}
               onChange={handleChangeAccountingStatementsDocs}
               group={accountingStatements}
@@ -300,7 +298,7 @@ export default function ValidProjects(props) {
               group={governance}
               data={governanceDocs}
               idUnidade={idUnidade}
-              year={false}
+              year={true}
             />
 
             <IsacDocSelect
@@ -309,7 +307,7 @@ export default function ValidProjects(props) {
               group={reporting}
               data={reportingDocs}
               idUnidade={idUnidade}
-              year={false}
+              year={true}
             />
             <IsacDocSelect
               title={groups[6]?.nome}
@@ -320,9 +318,7 @@ export default function ValidProjects(props) {
               year={false}
             />
             {contratante.idArquivoImagem && (
-              <Contractor
-                logo={unit.contratante.urlS3}
-              />
+              <Contractor logo={unit.contratante.urlS3} />
             )}
           </Row>
         </Container>
