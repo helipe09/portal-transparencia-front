@@ -27,6 +27,22 @@ export default function IsacDocSelect(props) {
       return;
     }
     if (+event.target.value !== 0) {
+      setActive(false);
+      setActiveYears(true);
+      setFinalData(bkpData);
+    }
+    props.onChange(event);
+  }
+
+  function handleOnChangeWithOutYear(event) {
+    setSelected('0');
+    console.log(bkpData);
+    console.log('evento do handle', event.target.value);
+    if (+event.target.value === 0) {
+      setActive(false);
+      return;
+    }
+    if (+event.target.value !== 0) {
       setActive(true);
       setActiveYears(true);
       setFinalData(bkpData);
@@ -56,13 +72,13 @@ export default function IsacDocSelect(props) {
           <Card className='shadow-lg'>
             <Card.Body>
               <Form.Group>
-                <Form.Label>{props.title}</Form.Label>
+                <Form.Label>{props.title} sem ano</Form.Label>
                 {props.group && (
                   <>
                     <Form.Control
                       as='select'
                       id='docs'
-                      onChange={handleOnChange}
+                      onChange={handleOnChangeWithOutYear}
                       disabled={props.group.length <= 0 ? true : false}
                     >
                       {props.group && (
