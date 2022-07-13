@@ -1,6 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { Accordion, Col, Container, Row, Button, Card } from 'react-bootstrap';
+import {
+  Accordion,
+  Col,
+  Container,
+  Row,
+  Button,
+  Card,
+  Image,
+} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import Banner from '../../Components/Banner/banner';
+import ContractService from '../../services/ContractService';
+import Slider from 'react-slick';
 
 import UnitService from '../../services/UnitService';
 import '../../styles/home.css';
@@ -116,11 +127,30 @@ const states = [
   },
 ];
 
+const settings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  responsive: [
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2,
+        initialSlide: 2,
+      },
+    },
+  ],
+};
+
 export default function ValidUnit() {
   const [validUnit, setvalidUnit] = useState([]);
   const [ufs, setUfs] = useState([]);
   const [unitsByUf, setUnitsByUf] = useState([]);
   const [contratosValidos, setContratosValidos] = useState([]);
+  const [contracts, setContracts] = useState([]);
 
   useEffect(() => {
     const ufGroup = validUnit.reduce((object, unit) => {
@@ -133,11 +163,11 @@ export default function ValidUnit() {
 
   useEffect(() => {
     UnitService.getContratosVigentes().then((response) => {
-      setContratosValidos(response.data)
-    })
-  },[])
+      setContratosValidos(response.data);
+    });
+  }, []);
 
-  console.log('contratos Validos', contratosValidos)
+  console.log('contratos Validos', contratosValidos);
 
   useEffect(() => {
     UnitService.getContratosVigentes().then((results) => {
@@ -150,26 +180,33 @@ export default function ValidUnit() {
     });
   }, []);
 
+  useEffect(() => {
+    ContractService.get().then((results) => {
+      setContracts(results.data);
+    });
+  }, []);
+
   return (
     <>
+      <Banner />
       <Container>
-        <Row className="box-units pt-5">
-          <Col md={12} className="text-center">
+        <Row className='box-units pt-5'>
+          <Col md={12} className='text-center'>
             <h2>Unidades Gerenciadas</h2>
           </Col>
-          <Col md={10} className="offset-md-1 py-5">
-            <Card className="shadow-lg border-0">
+          <Col md={10} className='offset-md-1 py-5'>
+            <Card className='shadow-lg border-0'>
               <Card.Body>
-                <Accordion defaultActiveKey="0">
+                <Accordion defaultActiveKey='0'>
                   <Row>
                     {ufs.map((uf) => (
                       <Col md={6} key={uf}>
-                        <Accordion defaultActiveKey="0">
+                        <Accordion defaultActiveKey='0'>
                           <Row>
                             <Accordion.Toggle
                               as={Button}
-                              variant="link"
-                              eventKey="0"
+                              variant='link'
+                              eventKey='0'
                             >
                               <h5>
                                 {states.map((state) =>
@@ -178,13 +215,15 @@ export default function ValidUnit() {
                               </h5>
                             </Accordion.Toggle>
                           </Row>
-                          <Accordion.Collapse eventKey="0">
-                            <ul className="list-units">
+                          <Accordion.Collapse eventKey='0'>
+                            <ul className='list-units'>
                               {
                                 // eslint-disable-next-line
                                 unitsByUf[uf].map((unit) => (
                                   <li key={unit.id}>
-                                    <Link to={`unidades-gerenciadas/${unit.id}`}>
+                                    <Link
+                                      to={`unidades-gerenciadas/${unit.id}`}
+                                    >
                                       {unit.nome}
                                     </Link>
                                   </li>
@@ -199,6 +238,22 @@ export default function ValidUnit() {
                 </Accordion>
               </Card.Body>
             </Card>
+          </Col>
+        </Row>
+        <Row className='box-client my-5'>
+          <Col md={12} className='text-center pt-3 pb-5'>
+            <h2>Contratantes</h2>
+          </Col>
+          <Col md={10} className='offset-md-1 mb-5'>
+            <Slider {...settings}>
+              {contracts.map((item) => {
+                return (
+                  <div>
+                    <Image src={item.urlS3} width='170' />
+                  </div>
+                );
+              })}
+            </Slider>
           </Col>
         </Row>
       </Container>

@@ -12,6 +12,7 @@ import UnitInvalidCovid from './pages/unitCovid/UnitsInvalidCovid';
 import FinishedProjects from './pages/finishedProjects/FinishedProjects';
 import ValidUnit from './pages/unit/ValidUnit';
 import ValidProjects from './pages/validProjects/ValidProjects';
+import NovaPaginaComponent from './Components/NovaPagina/novaPagina';
 
 export default function Routes() {
   return (
@@ -19,16 +20,16 @@ export default function Routes() {
       <BrowserRouter>
         <Header />
         <Switch>
-          <Route exact path='/' component={Home} />
+          <Route exact path='/' component={ValidUnit} />
           <Route exact path='/blog-de-compliance/:slug' component={Post} />
           <Route exact path='/blog-de-compliance' component={Blog} />
           <Route exact path='/unidades/:id' component={SingleUnit} />
-          <Route exact path='/unidades-gerenciadas' component={ValidUnit} />
+          {/* <Route exact path='/unidades-gerenciadas' component={ValidUnit} /> */}
           <Route exact path='/unidades-gerenciadas/:id' component={ValidProjects} />
           <Route exact path='/unidades-covid' component={UnitCovid} />
           <Route exact path='/contratos-encerrados-covid' component={UnitInvalidCovid} />
           <Route exact path='/projetos-concluidos' component={InvalidUnit}/>
-          <Route exact path='/projetos-concluidos/:id' component={FinishedProjects}/>
+          <Route exact path='/projetos-concluidos/:id' component={NovaPaginaComponent}/>
         </Switch>
         <Footer />
       </BrowserRouter>
