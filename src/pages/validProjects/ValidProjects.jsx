@@ -58,6 +58,7 @@ export default function ValidProjects(props) {
     const id = props.match.params.id;
     UnitService.get(id).then((results) => {
       setUnit(results.data);
+      console.log('dados Unidade =>', results.data);
     });
     // UnitService.getDocs(id).then((results) => {
     //   console.log('documentos geral Unidade', results.data.grupos)
@@ -187,21 +188,17 @@ export default function ValidProjects(props) {
         <Container className='box-unit-info py-5'>
           <Row className='py-5'>
             <Col md={6}>
-              <h1>{unit.nome}</h1>
+              <h1>{unit.nome} 12345</h1>
               <p>{unit.resumo}</p>
               <h3 className='d-none'>Gestores</h3>
             </Col>
             <Col md={6}>
-              {unit.idArquivoImagem ? (
-                <Image
-                  width='50%'
-                  className='mb-4'
-                  src={unit.urlS3Imagem}
-                  fluid
-                />
-              ) : (
-                ''
-              )}
+              <Image
+                width='50%'
+                className='mb-4'
+                src={unit?.urlS3Imagem}
+                fluid
+              />
               <h3>Contato da Unidade</h3>
               <ul className='unit-social'>
                 <li>
